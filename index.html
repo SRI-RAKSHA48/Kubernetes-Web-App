@@ -1,47 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Information System</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Academic Dashboard</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
-            text-align: center;
-            padding: 50px;
-        }
-
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 500px;
-            margin: auto;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #2563eb;
-        }
-
-        p {
-            font-size: 18px;
-            color: #333;
-        }
-    </style>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#f3f5fb;color:#20243a}
+header{background:#202b50;color:white;padding:22px 7%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+header h2{font-size:23px}
+header span{color:#c8d2ff}
+.container{max-width:1100px;margin:30px auto;padding:0 20px}
+.welcome{margin-bottom:25px}
+.welcome h1{font-size:27px;margin-bottom:8px}
+.welcome p{color:#747b91}
+.profile{background:white;padding:22px;border-radius:15px;display:flex;align-items:center;gap:18px;margin-bottom:25px;box-shadow:0 4px 15px #202b5010}
+.avatar{width:65px;height:65px;border-radius:50%;background:#e4e9ff;color:#354a9c;display:grid;place-items:center;font-size:25px;font-weight:bold}
+.profile p{color:#777f95;margin-top:6px;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;margin-bottom:25px}
+.card{background:white;padding:22px;border-radius:14px;box-shadow:0 4px 15px #202b5010}
+.card p{color:#777f95;font-size:14px}
+.card h2{font-size:30px;margin-top:12px;color:#344b9d}
+.section{background:white;padding:25px;border-radius:15px;margin-bottom:25px;box-shadow:0 4px 15px #202b5010}
+.section h2{font-size:20px;margin-bottom:18px}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:14px;border-bottom:1px solid #eee}
+th{color:#68718a;font-size:13px}
+input,select{padding:11px;border:1px solid #d8ddeb;border-radius:8px;width:100%;margin:7px 0 15px;font-size:15px}
+button{background:#344b9d;color:white;border:0;border-radius:8px;padding:12px 20px;cursor:pointer;font-size:15px}
+button:hover{background:#253878}
+.result{margin-top:15px;padding:15px;background:#edf1ff;border-radius:9px;font-weight:bold;color:#344b9d}
+footer{text-align:center;padding:25px;color:#777f95}
+@media(max-width:600px){header{padding:18px}.section{padding:16px}th,td{padding:9px;font-size:13px}}
+</style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Welcome to Student Information System</h1>
 
-        <p><strong>Student Name:</strong> Raksha</p>
-        <p><strong>Department:</strong> Computer Science</p>
-        <p><strong>University:</strong> VIT-AP University</p>
+<header>
+<h2>🎓 EduTrack</h2>
+<span>Student Academic Portal</span>
+</header>
 
-       <h3>Application deployed successfully through Jenkins CI/CD!</h3>
-    </div>
+<div class="container">
+
+<div class="welcome">
+<h1>Welcome back, Raksha! 👋</h1>
+<p>Here's your academic performance overview.</p>
+</div>
+
+<div class="profile">
+<div class="avatar">R</div>
+<div>
+<h3>Raksha</h3>
+<p>Computer Science | VIT-AP University</p>
+<p>Integrated M.Tech • Student Dashboard</p>
+</div>
+</div>
+
+<div class="cards">
+<div class="card">
+<p>Current CGPA</p>
+<h2 id="cgpaDisplay">8.71</h2>
+</div>
+<div class="card">
+<p>Attendance</p>
+<h2>92%</h2>
+</div>
+<div class="card">
+<p>Subjects</p>
+<h2>6</h2>
+</div>
+<div class="card">
+<p>Academic Status</p>
+<h2 style="font-size:23px;color:#16865b">Excellent</h2>
+</div>
+</div>
+
+<div class="section">
+<h2>📚 Subject Performance</h2>
+<table>
+<thead><tr><th>Subject</th><th>Credits</th><th>Grade</th></tr></thead>
+<tbody>
+<tr><td>Software Architecture</td><td>4</td><td>A</td></tr>
+<tr><td>Deployment Architecture</td><td>3</td><td>A+</td></tr>
+<tr><td>Computer Networks</td><td>4</td><td>A</td></tr>
+<tr><td>Database Systems</td><td>3</td><td>A+</td></tr>
+<tr><td>Engineering Psychology</td><td>2</td><td>A</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="section">
+<h2>🧮 CGPA Calculator</h2>
+<p style="color:#777f95;margin-bottom:15px">Enter your subject credits and grade points to calculate your semester GPA.</p>
+
+<label>Subject Name</label>
+<input id="subject" placeholder="e.g. Computer Networks">
+
+<label>Credits</label>
+<input id="credits" type="number" min="1" max="10" placeholder="Enter credits">
+
+<label>Grade Point</label>
+<select id="grade">
+<option value="">Select grade</option>
+<option value="10">S - 10</option>
+<option value="9">A - 9</option>
+<option value="8">B - 8</option>
+<option value="7">C - 7</option>
+<option value="6">D - 6</option>
+<option value="5">E - 5</option>
+<option value="0">F - 0</option>
+</select>
+
+<button onclick="addSubject()">Add Subject</button>
+
+<table style="margin-top:20px">
+<thead><tr><th>Subject</th><th>Credits</th><th>Grade Point</th></tr></thead>
+<tbody id="subjectList"></tbody>
+</table>
+
+<div class="result" id="result">Your semester GPA will appear here.</div>
+</div>
+
+<div class="section">
+<h2>📅 Attendance Overview</h2>
+<table>
+<thead><tr><th>Subject</th><th>Attendance</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Software Architecture</td><td>95%</td><td>Good</td></tr>
+<tr><td>Deployment Architecture</td><td>90%</td><td>Good</td></tr>
+<tr><td>Computer Networks</td><td>88%</td><td>Good</td></tr>
+<tr><td>Database Systems</td><td>96%</td><td>Excellent</td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+<footer>EduTrack | Student Academic Dashboard</footer>
+
+<script>
+let subjects=[];
+
+function addSubject(){
+const name=document.getElementById("subject").value.trim();
+const credits=Number(document.getElementById("credits").value);
+const grade=document.getElementById("grade").value;
+
+if(!name || !Number.isInteger(credits) || credits<1 || credits>10 || grade===""){
+alert("Please enter a valid subject, credits and grade.");
+return;
+}
+
+subjects.push({name,credits,grade:Number(grade)});
+
+const row=document.createElement("tr");
+[name,credits,grade].forEach(value=>{
+const cell=document.createElement("td");
+cell.textContent=value;
+row.appendChild(cell);
+});
+document.getElementById("subjectList").appendChild(row);
+
+const totalCredits=subjects.reduce((sum,s)=>sum+s.credits,0);
+const totalPoints=subjects.reduce((sum,s)=>sum+s.credits*s.grade,0);
+const gpa=(totalPoints/totalCredits).toFixed(2);
+
+document.getElementById("result").textContent=
+"Your calculated Semester GPA: "+gpa;
+
+document.getElementById("subject").value="";
+document.getElementById("credits").value="";
+document.getElementById("grade").value="";
+}
+</script>
+
 </body>
 </html>
